@@ -1,44 +1,73 @@
+// when the Doc/DOM is loaded
 $(document).ready(function() {
-  var map = initialize();
+    var map = initialize();  // initialize the map
+    var container = $('.container');
 
-  var container = $('.container');
+    // open sidebar
     $('#toggle_sidebar').toggle(
-      function(){
-      container.addClass('open');
-      $("#map_canvas").css({height:$(".contents").height()}).css({width:$(".contents").width()});
-    }, function(){
-      container.removeClass('open');
-      $("#map_canvas").css({height:$(".contents").height()}).css({width:$(".contents").width()});
-    });
+	function(){
+	    container.addClass('open');
+	    $("#map_canvas").css({height:$(".contents").height()}).css({width:$(".contents").width()});
+	}, 
+	// close sidebar
+	function(){
+	    container.removeClass('open');
+	    $("#map_canvas").css({height:$(".contents").height()}).css({width:$(".contents").width()});
+	});
+    
+    $('.sidebar input').checked = false;
+    
+    // changes to sidebar....ex: clicking checkboxes
+    // get values from html fields and assign to 'options'
+    $('.sidebar input').live("change", function(){
+	var options = {
+            feed: $(this).attr("data-layer-url"),
+            name: $(this).attr("data-layer-name"),
+            type: $(this).attr("data-layer-type")
+	};
 
-  $('.sidebar input').checked = false;
+	// if a checkbox is checked....decide what to do based on 'type'
+	if (this.checked) {
 
-  $('.sidebar input').live("change", function(){
-    var options = {
-        feed: $(this).attr("data-layer-url"),
-        name: $(this).attr("data-layer-name"),
-        type: $(this).attr("data-layer-type")
-    };
+	    // broken
+	    if (options.type === "cameras") {  
+		addPennDOTCameras(map);
+	    } 
 
-    if (this.checked) {
-      if (options.type === "cameras") {
-        addPennDOTCameras(map);
-      } else if (options.type === "points") {
-        addPointSet(options, map);
-      } else {
-        addLayer(options, map);
-      }
-    } else {
-      if (options.name === "penndot-cameras") {
-          removePennDOTCameras(map);
-      } else if (options.type === "points") {
-        removePointSet(options, map);
-      } else {
-          removeLayer(options, map);
-      }
-    }
+	    // adds zipcar, pcs, penndot
+	    else if (options.type === "points") {
+		addPointSet(options, map);  
+	    } 
 
-  })
+	    // add traffic
+	    else if (options.type === "traffic") {
+		add_traffic(options, map);  
+	    } 
 
+	    // adds kml layers
+	    else {
+		addLayer(options, map);  
+	    }
+	} 
 
+	// checkbox unchecked....remove points or kml file
+	else {
+	    if (options.name === "penndot-cameras") {  
+		removePennDOTCameras(map);
+	    } 
+	    else if (options.type === "points") {
+		removePointSet(options, map);
+	    } 
+
+	    else if (options.type === "traffic") {
+		remove_traffic(options, map);
+	    } 
+	    else {
+		removeLayer(options, map);
+	    }
+	}
+	
+    })
+    
+    
 });

@@ -13,12 +13,13 @@
 <body>
 <div class="container">
     <div class="sidebar">
-        <h3>Philadelphia Bike Network</h3>
+
+
+        <h3>Traffic</h3>
         <ul>
-            <li><input type="checkbox" data-layer-type="kml" data-layer-url="http://www.pasda.psu.edu/kml/CityPhilly/PhiladelphiaBikeNetwork.kml" data-layer-name="bike-network" /><label>Bike Network</label></li>
-            <li><input type="checkbox" data-layer-type="kml" data-layer-url="http://www.pasda.psu.edu/kml/CityPhilly/PhiladelphiaBikeRacks201201.kml" data-layer-name="bike-racks" /><label>Bike Racks</label></li>
-            <li><input type="checkbox" data-layer-type="kml" data-layer-url="http://www.phillymap.com/kml/trails.kml" data-layer-name="regional-bike-trails" /><label>Regional Bike Trails</label></li>
+            <li><input type="checkbox" data-layer-type="traffic" data-layer-url="" data-layer-name="traffic" /><label>Google Traffic</label></li>
         </ul>
+
 
         <h3>SEPTA</h3>
         <ul>
@@ -178,16 +179,37 @@
             </li>
         </ul>
 
+
+        <h3>PennDOT</h3>
+        <ul>
+            <li><input type="checkbox" data-layer-type="points" data-layer-url="http://philly-transit-map.phpfogapp.com/penndot.php" data-layer-name="penndot_cameras" /><label>PennDOT Cameras</label></li>
+        </ul>
+
+
+
+        <h3>PHL Airport</h3>
+        <ul>
+            <li><input type="checkbox" data-layer-type="xml" data-layer-url="http://www.flightstats.com/go/AirportTracker/airportTrackerUpdate.do?airportCode=PHL" data-layer-name="phl-realtime" /><label>Real-time Flights</label></li>
+            <li><input type="checkbox" data-layer-url="http://www.flightstats.com/go/AirportTracker/airportDeparturesArrivalsUpdate.do?airportCode=PHL&airportQueryType=1" data-layer-name="phl-arrivals" /><label>Arrivals</label></li>
+            <li><input type="checkbox" data-layer-url="http://www.flightstats.com/go/AirportTracker/airportDeparturesArrivalsUpdate.do?airportCode=PHL&airportQueryType=0" data-layer-name="phl-departures" /><label>Departures</label></li>
+        </ul>
+
+
+
+
+        <h3>Philadelphia Bike Network</h3>
+        <ul>
+            <li><input type="checkbox" data-layer-type="kml" data-layer-url="http://www.pasda.psu.edu/kml/CityPhilly/PhiladelphiaBikeNetwork.kml" data-layer-name="bike-network" /><label>Bike Network</label></li>
+            <li><input type="checkbox" data-layer-type="kml" data-layer-url="http://www.pasda.psu.edu/kml/CityPhilly/PhiladelphiaBikeRacks201201.kml" data-layer-name="bike-racks" /><label>Bike Racks</label></li>
+            <li><input type="checkbox" data-layer-type="kml" data-layer-url="http://www.phillymap.com/kml/trails.kml" data-layer-name="regional-bike-trails" /><label>Regional Bike Trails</label></li>
+        </ul>
+
         <h3>Car Sharing</h3>
         <ul>
             <li><input type="checkbox" data-layer-type="points" data-layer-url="http://carshare-api.herokuapp.com/pcs_locations" data-layer-name="phillycarshare-pods" /><label>PhillyCarShare Pods</label></li>
             <li><input type="checkbox" data-layer-type="points" data-layer-url="http://carshare-api.herokuapp.com/zipcar_locations" data-layer-name="zipcar-pods" /><label>ZipCar Pods</label></li>
         </ul>
 
-        <h3>PennDOT</h3>
-        <ul>
-            <li><input type="checkbox" data-layer-type="points" data-layer-url="http://philly-transit-map.phpfogapp.com/penndot.php" data-layer-name="penndot_cameras" /><label>PennDOT Cameras</label></li>
-        </ul>
 
         <h3>AMTRAK</h3>
         <ul>
@@ -209,12 +231,8 @@
             <li><input type="checkbox" data-layer-type="kml" data-layer-url="http://www.phillymap.com/kml/NJT400.kml" data-layer-name="400-sicklerville" /><label>400 Sicklerville - Philadelphia</label></li>
         </ul>
 
-        <h3>PHL Airport</h3>
-        <ul>
-            <li><input type="checkbox" data-layer-type="xml" data-layer-url="http://www.flightstats.com/go/AirportTracker/airportTrackerUpdate.do?airportCode=PHL" data-layer-name="phl-realtime" /><label>Real-time Flights</label></li>
-            <li><input type="checkbox" data-layer-url="http://www.flightstats.com/go/AirportTracker/airportDeparturesArrivalsUpdate.do?airportCode=PHL&airportQueryType=1" data-layer-name="phl-arrivals" /><label>Arrivals</label></li>
-            <li><input type="checkbox" data-layer-url="http://www.flightstats.com/go/AirportTracker/airportDeparturesArrivalsUpdate.do?airportCode=PHL&airportQueryType=0" data-layer-name="phl-departures" /><label>Departures</label></li>
-        </ul>
+
+
     </div> <!-- end sidebar -->
     <div class="header">
         <input id="toggle_sidebar" type="button" value="〓">
