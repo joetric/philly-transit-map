@@ -34,6 +34,11 @@ $(document).ready(function() {
 		addPennDOTCameras(map);
 	    } 
 
+	    // penndot cams
+	    else if (options.type === "penndot") {
+		add_penndot(options, map);  
+	    } 
+
 	    // adds zipcar, pcs, penndot
 	    else if (options.type === "points") {
 		addPointSet(options, map);  
@@ -55,6 +60,11 @@ $(document).ready(function() {
 	    if (options.name === "penndot-cameras") {  
 		removePennDOTCameras(map);
 	    } 
+
+	    else if (options.type === "penndot") {
+		remove_penndot(options, map);
+	    } 
+
 	    else if (options.type === "points") {
 		removePointSet(options, map);
 	    } 
