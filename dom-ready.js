@@ -3,6 +3,28 @@ $(document).ready(function() {
     var map = initialize();  // initialize the map
     var container = $('.container');
 
+
+
+
+    // penndot camera info window hide/open
+    $("#markers a").bind("click", function(){
+	var i = $(this).attr("rel");
+	// close any open info windows
+
+//	$('#map_canvas').gmap('closeInfoWindow');
+
+	for(x=0; x < arrInfoWindows.length; x++){ 
+	    arrInfoWindows[x].close(map, arrMarkers[x]); 
+	    alert(x);
+	}
+	
+	arrInfoWindows[i].open(map, arrMarkers[i]);
+    });
+
+
+
+
+
     // open sidebar
     $('#toggle_sidebar').toggle(
 	function(){
@@ -36,7 +58,7 @@ $(document).ready(function() {
 
 	    // penndot cams
 	    else if (options.type === "penndot") {
-		add_penndot(options, map);  
+		add_penndot(map);  
 	    } 
 
 	    // adds zipcar, pcs, penndot
@@ -62,7 +84,7 @@ $(document).ready(function() {
 	    } 
 
 	    else if (options.type === "penndot") {
-		remove_penndot(options, map);
+		remove_penndot(map);
 	    } 
 
 	    else if (options.type === "points") {

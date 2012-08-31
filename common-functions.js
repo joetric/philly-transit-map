@@ -3,6 +3,8 @@
 var active_layers = []; // keep
 var cameraMarkers = [];
 var cameraInfoWindows = [];
+var arrMarkers = [];
+var arrInfoWindows = [];
 
 // initialize the map (called from dom_ready.js)
 // set center, zoom level and type 
@@ -49,9 +51,60 @@ function removeLayer(options, map) {
 //--------------------- penndot cameras -----------------------------
 
 
+function add_penndot(map) {
+$.getJSON("penndot.json", {}, function(data){
+
+    $.each(data.object_name, function(i, item){
+	$("#markers").append('<li><a href="#" rel="' + i + '">' + item.name + '</a></li>');
+	var marker = new google.maps.Marker({
+	    position: new google.maps.LatLng(item.lat, item.lng),
+	    map: map,
+	    title: item.title
+	});
+
+	arrMarkers[i] = marker;
+
+	var infowindow = new google.maps.InfoWindow({
+	    content: "<h3>"+ item.name +"</h3><p><img src=\""+ item.url +"\"></p>"
+	});
+
+	arrInfoWindows[i] = infowindow;
+	google.maps.event.addListener(marker, 'click', function() {
+//	    $('#map_canvas').gmap('closeInfoWindow');
+
+	    infowindow.open(map, marker);
+	});
+    });
+});
+}
+
+
+
+// remove penndot
+function remove_penndot(map) {
+    var i;
+    var len;
+    for (i = 0, len = arrMarkers.length; i < len; i += 1) {
+        arrMarkers[i].setMap(null);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // add markers for penndot cams
-function add_penndot(options, map) {
+function add_penndot2(options, map) {
     active_layers[options.name] = active_layers[options.name] || [];
     if (active_layers[options.name].length === 0) {
         var pointSets = {
@@ -87,7 +140,7 @@ function add_penndot(options, map) {
 }
 
 // remove penndot
-function remove_penndot(options, map) {
+function remove_penndot2(options, map) {
     var i;
     var len;
     for (i = 0, len = active_layers[options.name].length; i < len; i += 1) {
